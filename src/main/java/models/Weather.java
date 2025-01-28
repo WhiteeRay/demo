@@ -14,7 +14,7 @@ public class Weather {
         return day;
     }
 
-    public String getSummary() {
+    public String getWeather() {
         return weather;
     }
 
