@@ -9,18 +9,14 @@ import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
+import java.util.HashMap;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class WeatherRepository {
-    private final HttpClient client = HttpClient.newHttpClient();
-    private final ObjectMapper mapper = new ObjectMapper();
-
-
-
+    private static final HashMap<String, Weather> weatherCache = new HashMap<>();
     public static Weather getWeather(String token, String placeId) {
         CityDatabase db = new CityDatabase();
-
 
 
         Scanner sc = new Scanner(System.in);
@@ -52,31 +48,38 @@ public class WeatherRepository {
 
                     case 1:
                         weather = new Weather(data.get(0).get("day").asText(), data.get(0).get("summary").asText());
+                        weatherCache.put(String.valueOf(data.get(0).get("day")),weather);
 
                         break;
                     case 2:
                         weather = new Weather(data.get(1).get("day").asText(), data.get(1).get("summary").asText());
+                        weatherCache.put(String.valueOf(data.get(1).get("day")),weather);
 
                         break;
                     case 3:
                         weather = new Weather(data.get(2).get("day").asText(), data.get(2).get("summary").asText());
+                        weatherCache.put(String.valueOf(data.get(2).get("day")),weather);
 
 
                         break;
                     case 4:
                         weather = new Weather(data.get(3).get("day").asText(), data.get(3).get("summary").asText());
+                        weatherCache.put(String.valueOf(data.get(3).get("day")),weather);
 
                         break;
                     case 5:
                         weather = new Weather(data.get(4).get("day").asText(), data.get(4).get("summary").asText());
+                        weatherCache.put(String.valueOf(data.get(4).get("day")),weather);
 
                         break;
                     case 6:
                         weather = new Weather(data.get(5).get("day").asText(), data.get(5).get("summary").asText());
+                        weatherCache.put(String.valueOf(data.get(5).get("day")),weather);
 
                         break;
                     case 7:
                         weather = new Weather(data.get(6).get("day").asText(), data.get(6).get("summary").asText());
+                        weatherCache.put(String.valueOf(data.get(6).get("day")),weather);
 
                         break;
                     default:
